@@ -8,8 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private final User user = new User();
-    private final Connection connection = null;
+    private Connection connection;
 
     public UserDaoJDBCImpl() {
     }
@@ -88,6 +87,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> users = new ArrayList<>();
+        User user = new User();
         try (Connection connection = Util.getConnection()) {
             Statement statement = connection.createStatement();
             String query = "SELECT * from User";
